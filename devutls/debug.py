@@ -1,4 +1,5 @@
 import colorama
+from functools import wraps
 
 
 def print_blue(text):
@@ -15,3 +16,12 @@ def print_yellow(text):
 
 def print_green(text):
     print(f"{colorama.Fore.GREEN}{text}{colorama.Fore.RESET}")
+
+
+def trace(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        output = func(*args, **kwargs)
+        print_blue(f'{func.__name__}({args!r}, {kwargs!r}) -> {output!r}')
+        return output
+    return wrapper

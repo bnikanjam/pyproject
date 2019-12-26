@@ -3,7 +3,9 @@
 Project short description
 
 
-### Core Technologies Used
+### Technologies
+**Pipenv:** Managing dependencies and development environments for collaborative Python projects!
+
 ### Set up Python Local Development
 ### Run Tests
 

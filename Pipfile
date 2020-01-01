@@ -10,6 +10,7 @@ flake8 = "*"
 mypy = "*"
 colorama = "*"
 isort = "*"
+pytest-cov = "*"
 
 [packages]
 

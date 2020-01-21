@@ -1,10 +1,5 @@
 """
 """
 
-
-def f():
-    raise Exception("Not Implemented Yet")
-
-
-if __name__ == "__main__":
-    f()
+# To export classes, variables and functions from our package
+from .app import AppBase

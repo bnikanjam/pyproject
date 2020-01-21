@@ -6,6 +6,8 @@ Project short description
 ### Technologies
 
 ##### Development Tools:
+**Bandit:** A security linter to find common security issues in Python code.
+
 **pytest:** The pytest framework makes it easy to write small tests, yet scales to support complex functional testing.
 
 **pytest-cov:** Pytest plugin produces coverage reports.

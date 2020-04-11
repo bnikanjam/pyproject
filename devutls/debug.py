@@ -20,10 +20,21 @@ def print_green(text):
 
 
 def trace(func):
+    """
+    Trace prints/reveals lifecycle of a its decorated function or method by printing the
+    function/method name, its positional args, keyword args, and returned obj/value.
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         return_of_decorated_func = func(*args, **kwargs)
-        print_yellow(f'{func.__name__}({args}, {kwargs}) -> {return_of_decorated_func}')
+        print('\n', func)
+        print(f'{len(args)} positional args:' if len(args) else 'No positional args.')
+        for i, arg in enumerate(args):
+            print('\t', i, ': ', arg)
+        print(f'{len(kwargs)} keyword args:' if len(kwargs) else 'No keyword args.')
+        for k, v in kwargs.items():
+            print('\t', k, ': ', v)
+        print('returns:\n', return_of_decorated_func)
         return return_of_decorated_func
     return wrapper
 

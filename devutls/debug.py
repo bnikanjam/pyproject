@@ -1,6 +1,10 @@
-import rich
 from functools import wraps
 from timeit import default_timer as timer
+
+from rich import print
+from rich.traceback import install
+
+install()
 
 
 def trace(func):
@@ -12,14 +16,14 @@ def trace(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         return_of_decorated_func = func(*args, **kwargs)
-        print('\n', f"{func}")
-        print(f'{len(args)} positional args:' if len(args) else 'No positional args.')
+        print("\n", f"[bold magenta]{func}[/bold magenta]")
+        print(f"{len(args)} positional args:" if len(args) else "No positional args.")
         for i, arg in enumerate(args):
-            print('\t', i, ': ', arg)
-        print(f'{len(kwargs)} keyword args:' if len(kwargs) else 'No keyword args.')
+            print("\t", i, ": ", arg)
+        print(f"{len(kwargs)} keyword args:" if len(kwargs) else "No keyword args.")
         for k, v in kwargs.items():
-            print('\t', k, ': ', v)
-        print('returns:\n', return_of_decorated_func)
+            print("\t", k, ": ", v)
+        print("returns:\n", return_of_decorated_func)
         return return_of_decorated_func
 
     return wrapper
@@ -37,11 +41,17 @@ def benchmark(func):
         if run_time >= 1:
             print(f"\nRUNTIME of {func.__name__}: {round(run_time, 2)} seconds.")
         elif run_time >= 10 ** -3:
-            print(f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 3, 2)} milliseconds.")
+            print(
+                f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 3, 2)} milliseconds."
+            )
         elif run_time >= 10 ** -6:
-            print(f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 6, 2)} microseconds.")
+            print(
+                f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 6, 2)} microseconds."
+            )
         elif run_time >= 10 ** -9:
-            print(f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 9, 2)} nanoseconds.")
+            print(
+                f"\nRUNTIME of {func.__name__}: {round(run_time * 10 ** 9, 2)} nanoseconds."
+            )
 
         return return_of_decorated_func
 
